@@ -1,1 +1,21 @@
+Henon.io Take home assessment
 
+Front end: React.js
+Backend python Django
+
+C:\Users\jcr3i\Documents\GitHub\Frankfurter_Dashboard
+
+Backend Init:
+C:\Users\jcr3i\Documents\GitHub\Frankfurter_Dashboard\myworld
+myworld\Scripts\activate.bat
+cd dashboard_frankfurter
+py manage.py runserver
+Starting development server at http://127.0.0.1:8000/
+
+http://127.0.0.1:8000/frankfurter # for data retrieval 
+
+
+Front-End Init:
+
+C:\Users\jcr3i\Documents\GitHub\Frankfurter_Dashboard\dashboard-app
+npm run start

@@ -1,0 +1,24 @@
+Henon.io Take home assessment
+
+Front end: React.js
+Backend python Django
+
+C:\Users\jcr3i\myworld
+
+myworld\Scripts\activate.bat
+
+py manage.py runserver
+Starting development server at http://127.0.0.1:8000/
+
+http://127.0.0.1:8000/frankfurter # for hello world test
+
+
+
+react
+npx create-react-app dashboard-app --use-npm
+
+ag-grid
+npm install --save ag-grid-community ag-grid-react
+
+cd dashboard-app
+npm run start
