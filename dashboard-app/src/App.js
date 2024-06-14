@@ -7,15 +7,19 @@ const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
 
- function App(){
+function App(){
 	console.log("opening app")
 	const el=(
-	<div>
+	<div style={{ padding: 50 }}>
         <h1>Frankfurter Dashboard</h1>
 		<GridAndChart/>
 	</div>
 	);
+	//return (el)
 	root.render(el)
+	
+	
+	
 
 
 }
