@@ -1,5 +1,4 @@
-import {Table} from './Table'
-import {LineChart} from './LineChart'
+
 import {GridAndChart} from './GridAndChart'
 import * as ReactDOM from 'react-dom';
 

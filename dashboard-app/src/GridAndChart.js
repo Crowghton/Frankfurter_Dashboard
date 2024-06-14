@@ -1,15 +1,13 @@
 import React from "react";
-import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css"; 
 import {Chart, defaults} from "chart.js/auto";
 import { Line} from 'react-chartjs-2';
 import { useCallback, useEffect, useState, useRef } from 'react';
 
-//defaults.maintainAspectRatio=false;
+
 defaults.responsive = true;
-
-
 
 var base='EUR'
 var baseChart='EUR'
@@ -65,23 +63,27 @@ const lineData ={
 };
 var gridData=[]
 export const GridAndChart= ()=>{
+	
 	const [gridApi, setGridApi]= useState();
 	const [lineApi, setLineApi]= useState();
-	console.log("Building displays")
 	const [gridData,setGridData]= useState([])
 	var output=null
+	const chartRef=useRef();
+	console.log("Building displays")
+	
+	//Fecth data from the backend system
 	useEffect(()=>{
 		fetch("http://127.0.0.1:8000/frankfurter/").then(resp=>resp.json())
 		.then(data=>{console.log(data)
-		//gridapi.api.applyTransaction({add:data})
-		//data.forEach(setGridData)
 		setGridData(data)
 		data.forEach(setLineData)
-		//lineData.labels.push(data.map(data => data.date))
 		console.log("line data: " + lineData)
 		})
 	},[])
 	
+	
+	
+	//Grid section
 	const onGridReady = (params)=>{
 		
 		console.log("Grid is ready")
@@ -127,7 +129,6 @@ export const GridAndChart= ()=>{
 	}else if (baseState=='USD'){
 		USDButton()
 	}
-    //closeSidebarToolpanel();
     console.log("column state restored");
   };
 
@@ -135,13 +136,10 @@ export const GridAndChart= ()=>{
     gridApi.api.resetColumnState();
 	EURButton();
 	gridApi.api.setFilterModel();
-    //clearLocalStorage();
-    //closeSidebarToolpanel();
     console.log("column state reset");
   };
   
   const EURButton=(params)=>{
-	//console.log(params)
 	if(base=='EUR'){
 		return
 	}
@@ -195,13 +193,10 @@ const USDButton=(params)=>{
 	console.log(gridData)
 	gridApi.api.refreshCells()
 }
-const chartRef=useRef();
 
 
 
-const onClick= (event) =>{
-	console.log("clicked the chart")
-}
+//Chart section
 
 const EURChartButton=(params)=>{
 
@@ -277,18 +272,7 @@ const USDChartButton=(params)=>{
 
 }
 
-	const saveChartState = () => {
-		//window.colState = gridApi.api.getColumnState();
-		const colState= JSON.stringify(gridApi.api.getColumnState());
-		const baseState=JSON.stringify(base);
-		localStorage.setItem('colState',colState);
-		localStorage.setItem('base',baseState);
-		//savedBase=base;
-		//setLocalStorage(colState);
-		//closeSidebarToolpanel();
-		console.log("column state saved");
-		console.log(colState);
-  };
+
 
 
 	output =(
@@ -314,7 +298,7 @@ const USDChartButton=(params)=>{
             <button onClick={USDChartButton}>Set Base to USD</button>
      </div>
 	<div >
-	<Line id='lineObj' data={lineData} ref={chartRef} onClick={onClick}/>
+	<Line id='lineObj' data={lineData} ref={chartRef} />
 	</div>
 	</div>
 	)
